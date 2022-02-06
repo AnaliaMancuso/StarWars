@@ -1,9 +1,10 @@
-.hide {
-  display:none;
+@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+
+*{
+  margin:0;
+  padding: 0;
 }
-.show {
-  display:inline;
-}
+
 button {
   font-size: calc(10px + 2vmin);
 }
@@ -14,7 +15,7 @@ button {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border-left-color: #09f;
+  border-left-color: rgb(246, 246, 246);
   animation: spin 1s ease infinite;
 }
 @keyframes spin {
@@ -27,3 +28,81 @@ button {
 }
 
 /* end spinner  */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Mukta', sans-serif;
+}
+.container-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.buttons-left button, .btn-load-more {
+  background-color: #9e36ff;
+  color:#ffffff;
+  height: 50px;
+  padding: 0 30px ;
+  width: 250px;
+  text-align: right;
+  cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.btn-load-more {
+  text-align: center;
+  height: 40px;
+  width: 200px;
+}
+.end-list {
+  color: rgb(172, 171, 171);
+  font-style: italic;
+  font-weight: bold;
+}
+.buttons-left{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 300px;
+}
+.lists-right {
+  height: 400px;
+  width: 600px;
+  padding: 20px 0 0 20px;
+  box-sizing: border-box;
+  background-color: #9e36ff;
+  border-radius: 3%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.right label, .title-card {
+  text-decoration:underline;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.card-information {
+  padding-right: 20px;
+}
+.card-information p span {
+  text-decoration: underline;
+}
+.right{
+  display: flex;
+  justify-content: space-between;
+}
+input {
+  margin-bottom: 20px;
+}
+.lists-li {
+  cursor: pointer;
+  list-style: none;
+}
+.lists-li:hover {
+  background-color: #6100bb;
+}
+.card-container {
+  height: 300px;
+  width: 250px;
+}

@@ -3,77 +3,55 @@ import { useState } from "react";
 import Lists from "./Lists";
 import getFilms from "../utils/getFilms";
 import getPeople from "../utils/getPeople";
+import Stack from '@mui/material/Stack';
 
-const initialStateFilms = "hide";
-const initialStatePeople = "hide";
+// import { useDispatch, useSelector }  from 'react-redux';
+// import { suma } from '../actions/suma';
+
+const initialStateFilms = false;
 
 export default function Lateral() {
+  // const state = useSelector(state => state)
+  // const dispatch = useDispatch();
+
   const [stateFilms, setStateFilms] = useState(initialStateFilms);
-  const [statePeople, setStatePeople] = useState(initialStatePeople);
-
+ 
   const { films } = getFilms();
-
-  const [dataFilms, setDataFilms] = useState(films);
   const { people } = getPeople();
 
-  const handleFilms = (e) => {
+  let next = people.next;
+  const handle = (e) => {
     if (e.target.value === "films") {
-      setStateFilms("show");
-      setStatePeople("hide");
+      setStateFilms(true);
     } else {
       setStateFilms(initialStateFilms);
     }
   };
-  const handlePeople = (e) => {
-    if (e.target.value === "people") {
-      setStateFilms("hide");
-      setStatePeople("show");
-    } else {
-      setStatePeople(initialStatePeople);
-    }
-  };
-
-  //search handler
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  const searchHandler = (searchTerm) => {
-    setSearchTerm(searchTerm);
-    if (searchTerm !== "") {
-      const newList = dataFilms.filter((item) => {
-        return Object.values(item)
-          .join(" ")
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
-      });
-      setSearchResults(newList);
-    } else {
-      setSearchResults(dataFilms);
-    }
-  };
-
   return (
-    <>
-      <button value="films" onClick={handleFilms}>
-        peliculas
-      </button>
-      <button value="people" onClick={handlePeople}>
-        personajes
-      </button>
-      <hr></hr>
-      <Lists
-        term={searchTerm}
-        searchKeyWord={searchHandler}
-        appearence={stateFilms}
-        data={searchTerm.length < 1 ? films.results : searchResults}
-        section="Películas"
-      />
-      <hr></hr>
-      <Lists
-        appearence={statePeople}
-        data={people.results}
-        section="Personajes"
-      />
-    </>
+    <div className=" container-box">
+      <div className="buttons-left">
+        <button value="films" onClick={handle}>
+          PELICULAS 
+        </button>
+        <button value="people" onClick={handle}>
+          PERSONAJES 
+        </button>
+      </div>
+      <div className="lists-right">
+        {stateFilms === true ? (
+          <Lists
+            data={films.results}
+            section="Películas"
+          />
+        ) : (
+          <Lists
+          
+            data={people.results}
+            section="Personajes"
+            next={next}
+          />
+        )}
+      </div>
+    </div>
   );
 }
