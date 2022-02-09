@@ -3,18 +3,20 @@ import Card from "./Card";
 import { useState } from "react";
 import Spinner from "./Spinner";
 
-export default function Lists({ section, data,  next }) {
+export default function Lists({ section, data, next }) {
   const [cards, setCards] = useState([]);
-  const [show, setShow]= useState(false)
+  const [show, setShow] = useState(false);
+  const [urls, setUrls] = useState([]);
 
   const showCard = (e) => {
     setCards(e);
-    setShow(true)
+    setShow(true);
+    setUrls(e.films);
   };
 
   return (
     <div className="right">
-      <div >
+      <div>
         <label>{section}</label>
         <input type="text" placeholder="Search..." />
         <ul>
@@ -30,7 +32,6 @@ export default function Lists({ section, data,  next }) {
                 </li>
               ) : (
                 <li
-               
                   className="lists-li"
                   key={index}
                   onClick={() => showCard(item)}
@@ -51,9 +52,11 @@ export default function Lists({ section, data,  next }) {
       </div>
       <div className="">
         {show === true ? (
-        <Card description={cards} />
+          <Card description={cards} filmsCh={urls} />
         ) : (
-         <p className="card-container end-list">Seleccione del listado para ver la descripción</p> 
+          <p className="card-container end-list">
+            Seleccione del listado para ver la descripción
+          </p>
         )}
       </div>
     </div>

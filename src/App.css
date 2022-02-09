@@ -56,6 +56,7 @@ button {
   text-align: center;
   height: 40px;
   width: 200px;
+  font-size: 20px;
 }
 .end-list {
   color: rgb(172, 171, 171);
